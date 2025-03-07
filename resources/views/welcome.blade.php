@@ -2,18 +2,18 @@
 
 @section('title', 'Welcome')
 
-<style>
+@section('style')
 .container {
   max-width: 960px;
 }
-</style>
+@endsection
 
 @section('content')
 <div class="container">
     <div class="py-5 text-center">
       <svg class="bi" width="100" height="100"><use xlink:href="#build"/></svg>
       <h2>Enrollment form</h2>
-      <p class="lead">A "toy" form for registration. It's an use example of read data from database and put it in a <code>select</code> element.</p>
+      <p class="lead">A "toy" form for registration. It's an use example about read data from database and put it in a <code>HTML select</code> element.</p>
     </div>
 
     <div class="row g-5">
@@ -96,18 +96,18 @@
             </div>
 
             <div class="col-md-4">
-              <label for="region" class="form-label">Region</label>
-              <select class="form-select" id="region" required>
+              <label for="campus" class="form-label text-primary">Campus</label>
+              <select class="form-select" id="campus" required>
                 <option value="">Choose...</option>
                 <option>North</option>
               </select>
               <div class="invalid-feedback">
-                Please select a valid region.
+                Please select a valid campus.
               </div>
             </div>
 
             <div class="col-md-4">
-              <label for="way" class="form-label">How did you hear about us?</label>
+              <label for="way" class="form-label text-primary">How did you hear about us?</label>
               <select class="form-select" id="way" required>
                 <option value="">Choose...</option>
                 <option>Twitter</option>

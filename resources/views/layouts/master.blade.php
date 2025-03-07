@@ -10,15 +10,18 @@
     <meta name="generator" content="Hugo 0.122.0">
     <title> @yield('title') </title>
 
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3">
-
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.datatables.net/2.2.2/css/dataTables.bootstrap5.css" />
+
   </head>
   <style>
     .bi {
       vertical-align: -.125em;
       fill: currentColor;
     }
+    
+    @yield('style')
+
   </style>
   <body class="bg-body-tertiary">
     <svg xmlns="http://www.w3.org/2000/svg" class="d-none">
@@ -36,7 +39,7 @@
         <header class="d-flex justify-content-center py-3">
           <ul class="nav nav-pills">
             <li class="nav-item"><a href="{{ url('/') }}" class="nav-link {{ Request::path() ==  '/' ? 'active' : '' }}">Form</a></li>
-            <li class="nav-item"><a href="#" class="nav-link">Region Select Options</a></li>
+            <li class="nav-item"><a href="{{ url('select-options/campuses-select-options') }}" class="nav-link {{ Request::path() ==  'select-options/campuses-select-options' ? 'active' : '' }}">Campus Select Options</a></li>
             <li class="nav-item"><a href="#" class="nav-link">Student Select Options</a></li>
           </ul>
         </header>
@@ -47,7 +50,7 @@
         <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
           <div class="col-md-4 d-flex align-items-center">
             
-            <span class="mb-3 mb-md-0 text-body-secondary">&copy; <span id="currrentYear"></span>2024 JuanMX</span>
+            <span class="mb-3 mb-md-0 text-body-secondary">&copy; <span id="footerCurrrentYear"></span> JuanMX</span>
           </div>
   
           <ul class="nav col-md-4 justify-content-end list-unstyled d-flex">
@@ -61,8 +64,14 @@
       
     </main>
     
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" ></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+    <script src="https://cdn.datatables.net/2.2.2/js/dataTables.js"></script>
+    <script src="https://cdn.datatables.net/2.2.2/js/dataTables.bootstrap5.js"></script>
+    
+    <script>
+      document.getElementById("footerCurrrentYear").innerHTML = new Date().getFullYear();
+    </script>
   </body>
 </html>
 @yield('script')
