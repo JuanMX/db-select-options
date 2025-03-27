@@ -19,7 +19,13 @@
       vertical-align: -.125em;
       fill: currentColor;
     }
-    
+    .modal-sheet .modal-dialog {
+      width: 380px;
+      transition: bottom .75s ease-in-out;
+    }
+    .modal-sheet .modal-footer {
+      padding-bottom: 2rem;
+    }
     @yield('style')
 
   </style>
@@ -33,13 +39,13 @@
       </symbol>
     </svg>
 
-    <main>
+    <main class="min-vh-100 d-flex flex-column">
       
       <div class="container">
         <header class="d-flex justify-content-center py-3">
           <ul class="nav nav-pills">
             <li class="nav-item"><a href="{{ url('/') }}" class="nav-link {{ Request::path() ==  '/' ? 'active' : '' }}">Form</a></li>
-            <li class="nav-item"><a href="{{ url('select-options/campuses-select-options') }}" class="nav-link {{ Request::path() ==  'select-options/campuses-select-options' ? 'active' : '' }}">Campus Select Options</a></li>
+            <li class="nav-item"><a href="{{ url(env('DB_TABLE_SELECT_OPTIONS_ENDS_WITH').'/campuses_'.env('DB_TABLE_SELECT_OPTIONS_ENDS_WITH')) }}" class="nav-link {{ Request::path() ==  env('DB_TABLE_SELECT_OPTIONS_ENDS_WITH').'/campuses_'.env('DB_TABLE_SELECT_OPTIONS_ENDS_WITH') ? 'active' : '' }}">Campuses Select Options</a></li>
             <li class="nav-item"><a href="#" class="nav-link">Student Select Options</a></li>
           </ul>
         </header>
@@ -68,7 +74,7 @@
     <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
     <script src="https://cdn.datatables.net/2.2.2/js/dataTables.js"></script>
     <script src="https://cdn.datatables.net/2.2.2/js/dataTables.bootstrap5.js"></script>
-    
+    <script defer src="https://use.fontawesome.com/releases/v5.15.4/js/all.js" integrity="sha384-rOA1PnstxnOBLzCLMcre8ybwbTmemjzdNlILg8O7z1lUkLXozs4DHonlDtnE7fpc" crossorigin="anonymous"></script>
     <script>
       document.getElementById("footerCurrrentYear").innerHTML = new Date().getFullYear();
     </script>

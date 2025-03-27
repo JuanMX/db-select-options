@@ -107,10 +107,11 @@
             </div>
 
             <div class="col-md-4">
-              <label for="way" class="form-label text-primary">How did you hear about us?</label>
+              <label for="way" class="form-label text-primary">Student type</label>
               <select class="form-select" id="way" required>
                 <option value="">Choose...</option>
-                <option>Twitter</option>
+                <option>Part-time student</option>
+                <option>Full-time student</option>
               </select>
               <div class="invalid-feedback">
                 Please select one.
