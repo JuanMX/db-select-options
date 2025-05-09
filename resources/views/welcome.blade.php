@@ -13,14 +13,14 @@
     <div class="py-5 text-center">
       <svg class="bi" width="100" height="100"><use xlink:href="#build"/></svg>
       <h2>Enrollment form</h2>
-      <p class="lead">A "toy" form for registration. It's an use example about read data from database and put it in a <code>HTML select</code> element.</p>
+      <p class="lead">A "toy" form that does not work for registration. It's an use example about read data from database and put it in a <code>HTML select</code> element.</p>
     </div>
 
     <div class="row g-5">
       <div class="col-md-5 col-lg-4 order-md-last">
         <h4 class="d-flex justify-content-between align-items-center mb-3">
           <span class="text-primary">Our benefits</span>
-          <span class="badge bg-primary rounded-pill"> </span>
+          <span class="badge bg-primary rounded-pill"><i class="fas fa-clipboard-list"></i> </span>
         </h4>
         <ul class="list-group mb-3">
           <li class="list-group-item d-flex justify-content-between lh-sm">
@@ -28,28 +28,28 @@
               <h6 class="my-0">Personal attention</h6>
               <small class="text-body-secondary"> </small>
             </div>
-            <span class="badge bg-success rounded-pill"> </span>
+            <span class="badge bg-success rounded-pill"><i class="far fa-life-ring"></i> </span>
           </li>
           <li class="list-group-item d-flex justify-content-between lh-sm">
             <div>
               <h6 class="my-0">You are our priority</h6>
               <small class="text-body-secondary"></small>
             </div>
-            <span class="badge bg-success rounded-pill"> </span>
+            <span class="badge bg-success rounded-pill"> <i class="fas fa-user-friends"></i></span>
           </li>
           <li class="list-group-item d-flex justify-content-between lh-sm">
             <div>
               <h6 class="my-0">We offer great experiencies</h6>
               <small class="text-body-secondary"> </small>
             </div>
-            <span class="badge bg-success rounded-pill"> </span>
+            <span class="badge bg-success rounded-pill"><i class="fas fa-child"></i> </span>
           </li>
           <li class="list-group-item d-flex justify-content-between bg-body-tertiary">
             <div class="text-success">
               <h6 class="my-0">We are the best</h6>
-              <small>25 years off experience supports us</small>
+              <small>With 25 years off experience</small>
             </div>
-            <span class="badge bg-success rounded-pill"> </span>
+            <span class=" text-warning "> <i class="fas fa-trophy fa-3x"></i></span>
           </li>
         </ul>
 
@@ -94,12 +94,20 @@
               <label for="address2" class="form-label">Address 2 <span class="text-body-secondary">(Optional)</span></label>
               <input type="text" class="form-control" id="address2" placeholder="Apartment or suite">
             </div>
-
+            @php
+              $helperPluck = pluckDBSelectOptions('campuses_select_options');
+              $campuses = $helperPluck['data'];
+              $placeholder = $helperPluck['placeholder'];
+            @endphp
+            
+            
             <div class="col-md-4">
-              <label for="campus" class="form-label text-primary">Campus</label>
+              <label for="campus" class="form-label text-danger">Campus</label>
               <select class="form-select" id="campus" required>
-                <option value="">Choose...</option>
-                <option>North</option>
+                <option value="">{{$placeholder}}</option>
+                @foreach($campuses as $key=>$value)
+                  <option value="{{$key}}">{{$value}}</option>
+                @endforeach
               </select>
               <div class="invalid-feedback">
                 Please select a valid campus.

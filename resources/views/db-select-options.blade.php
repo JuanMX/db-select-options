@@ -206,6 +206,8 @@
 
                     const toastBootstrap = bootstrap.Toast.getOrCreateInstance(document.getElementById('liveToast'));
                     toastBootstrap.show();
+
+                    $('#idGenericMessage').val("0");
                 } else {
                     alert("Something Went Wrong");
                 }

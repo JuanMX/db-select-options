@@ -17,6 +17,8 @@ return new class extends Migration
             $table->timestamps();
             $table->comment('Table for HTML select options purposes. This table name needs to end with: '. env('DB_TABLE_SELECT_OPTIONS_ENDS_WITH'));
         });
+
+        DB::table('campuses_select_options')->insert(['name' => 'North', 'created_at' => now()]);
     }
 
     /**
