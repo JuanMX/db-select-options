@@ -46,7 +46,7 @@
           <ul class="nav nav-pills">
             <li class="nav-item"><a href="{{ url('/') }}" class="nav-link {{ Request::path() ==  '/' ? 'active' : '' }}">Form</a></li>
             <li class="nav-item"><a href="{{ url(env('DB_TABLE_SELECT_OPTIONS_ENDS_WITH').'/campuses_'.env('DB_TABLE_SELECT_OPTIONS_ENDS_WITH')) }}" class="nav-link {{ Request::path() ==  env('DB_TABLE_SELECT_OPTIONS_ENDS_WITH').'/campuses_'.env('DB_TABLE_SELECT_OPTIONS_ENDS_WITH') ? 'active' : '' }}">Campuses Select Options</a></li>
-            <li class="nav-item"><a href="#" class="nav-link">Student Select Options</a></li>
+            <li class="nav-item"><a href="{{ url(env('DB_TABLE_SELECT_OPTIONS_ENDS_WITH').'/student_types_'.env('DB_TABLE_SELECT_OPTIONS_ENDS_WITH')) }}" class="nav-link {{ Request::path() ==  env('DB_TABLE_SELECT_OPTIONS_ENDS_WITH').'/student_types_'.env('DB_TABLE_SELECT_OPTIONS_ENDS_WITH') ? 'active' : '' }}">Student Types Select Options</a></li>
           </ul>
         </header>
       </div>

@@ -13,7 +13,7 @@ if (!function_exists('pluckDBSelectOptions')) {
         
         try {
             if(str_ends_with($table_select_options, env('DB_TABLE_SELECT_OPTIONS_ENDS_WITH')) && Schema::hasTable($table_select_options)){
-                $result['data'] = DB::table($table_select_options)->pluck('name','id')->toArray();
+                $result['data'] = DB::table($table_select_options)->whereNull('deleted_at')->pluck('name','id')->toArray();
                 $result['placeholder'] = 'Please select...';
             }
             else{

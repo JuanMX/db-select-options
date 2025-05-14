@@ -7,10 +7,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('select-options/campuses-select-options', function () {
-    return view('db-select-options');
-});
-
 Route::prefix(env('DB_TABLE_SELECT_OPTIONS_ENDS_WITH'))->group(function () {
     Route::get('/{DBSelectOptions}', [DBSelectOptionsController::class, 'index']);
     Route::post('/create', [DBSelectOptionsController::class, 'create']);

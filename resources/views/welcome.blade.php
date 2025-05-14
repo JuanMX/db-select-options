@@ -114,12 +114,19 @@
               </div>
             </div>
 
+            @php
+              $helperPluck = pluckDBSelectOptions('student_types_select_options');
+              $data = $helperPluck['data'];
+              $placeholder = $helperPluck['placeholder'];
+            @endphp
+
             <div class="col-md-4">
-              <label for="way" class="form-label text-primary">Student type</label>
-              <select class="form-select" id="way" required>
-                <option value="">Choose...</option>
-                <option>Part-time student</option>
-                <option>Full-time student</option>
+              <label for="way" class="form-label text-danger">Student type</label>
+              <select class="form-select" id="studentType" required>
+                <option value="">{{$placeholder}}</option>
+                @foreach($data as $key=>$value)
+                  <option value="{{$key}}">{{$value}}</option>
+                @endforeach
               </select>
               <div class="invalid-feedback">
                 Please select one.

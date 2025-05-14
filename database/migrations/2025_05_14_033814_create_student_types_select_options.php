@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('campuses_select_options', function (Blueprint $table) {
+        Schema::create('student_types_select_options', function (Blueprint $table) {
             $table->id();
             $table->string('name',250);
             $table->timestamps();
@@ -19,7 +19,7 @@ return new class extends Migration
             $table->comment('Table for HTML select options purposes. This table name needs to end with: '. env('DB_TABLE_SELECT_OPTIONS_ENDS_WITH'));
         });
 
-        DB::table('campuses_select_options')->insert(['name' => 'North', 'created_at' => now()]);
+        DB::table('student_types_select_options')->insert(['name' => 'Full-Time', 'created_at' => now()]);
     }
 
     /**
@@ -27,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('campuses_select_options');
+        Schema::dropIfExists('student_types_select_options');
     }
 };

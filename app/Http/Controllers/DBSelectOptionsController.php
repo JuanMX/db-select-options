@@ -13,7 +13,7 @@ use App\Http\Requests\DBSelectOptionsRequest;
 class DBSelectOptionsController extends Controller
 {
     /**
-     * Display the resource.
+     * Display the main view.
      */
     public function index(Request $request, string $DBSelectOptions)
     {
@@ -37,6 +37,7 @@ class DBSelectOptionsController extends Controller
         try {
             $jsonReturn['data'] = DB::table($request->DBSelectOptions)
                                         ->select('*')
+                                        ->whereNull('deleted_at')
                                         ->get()
                                         ->toArray();
 
@@ -52,7 +53,7 @@ class DBSelectOptionsController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Store a newly created resource in storage.
      */
     public function create(DBSelectOptionsRequest $request)
     {
@@ -62,7 +63,6 @@ class DBSelectOptionsController extends Controller
             $record = DB::table($request->DBSelectOptions)->insert([
                 'name' => $request->name,
                 'created_at' => now(),
-                'updated_at' => now(),
             ]);
 
             $jsonReturn['success'] = true;
@@ -77,31 +77,7 @@ class DBSelectOptionsController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
+     * Update the specified non-deleted resource in storage.
      */
     public function update(DBSelectOptionsRequest $request)
     {
@@ -110,6 +86,7 @@ class DBSelectOptionsController extends Controller
         try{
             $record = DB::table($request->DBSelectOptions)
                     ->where('id', $request->id)
+                    ->whereNull('deleted_at')
                     ->update(['name' => $request->name, 'updated_at' => now()]);
 
             $jsonReturn['success'] = true;
@@ -125,7 +102,7 @@ class DBSelectOptionsController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Remove (throughth softdelete) the specified resource from storage.
      */
     public function delete(DBSelectOptionsRequest $request)
     {
@@ -133,7 +110,7 @@ class DBSelectOptionsController extends Controller
         $jsonReturn = array('success'=>false, 'error'=>[], 'data'=>[]);
 
         try{
-            $record = DB::table($request->DBSelectOptions)->where('id', $request->id)->delete();
+            $record = DB::table($request->DBSelectOptions)->where('id', $request->id)->whereNull('deleted_at')->update(['deleted_at' => now()]);
 
             $jsonReturn['success'] = true;
 
